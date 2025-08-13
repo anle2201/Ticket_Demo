@@ -45,6 +45,7 @@ public class TicketServiceImp implements TicketService {
             newticket.setPriority(ticketRequest.getPriority());
             newticket.setGiveTo(ticketRequest.getGiveTo());
             newticket.setName(ticketRequest.getName());
+            newticket.setIsReception(false);
             newticket.setCreatedAt(new Timestamp(System.currentTimeMillis()));
             newticket.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
             ticketRepository.save(newticket);
@@ -110,6 +111,17 @@ public class TicketServiceImp implements TicketService {
             return null;
         }
     }
+
+    public Ticket updateIsReception(TicketRequest.UpdateReception request) {
+
+        Ticket ticket = ticketRepository.findById(request.getId())
+                .orElseThrow(() -> new RuntimeException("Ticket ID không tồn tại"));
+        ticket.setIsReception(request.getIsReception());
+
+
+        return ticketRepository.save(ticket);
+    }
+
 
 
     @Override

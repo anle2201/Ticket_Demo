@@ -48,6 +48,7 @@ public class TicketController {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
+
     @PostMapping("/update")
     public RespBean<Ticket> update(@RequestBody Ticket ticket) {
         try {
@@ -56,6 +57,7 @@ public class TicketController {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
+
     @DeleteMapping("/delete")
     public RespBean<Boolean> delete(@RequestParam Long id) {
         try {
@@ -80,6 +82,16 @@ public class TicketController {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, null);
         }
     }
+    @PostMapping("/updateReception")
+    public RespBean<Ticket> updateReception(@RequestBody TicketRequest.UpdateReception request) {
+        try {
+            ticketService.updateIsReception(request);
+            return RespBean.ok(ErrorCode.ERROR_0_STR, true);
+        } catch (Exception e) {
+            return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, false);
+        }
+    }
+
 }
 
 

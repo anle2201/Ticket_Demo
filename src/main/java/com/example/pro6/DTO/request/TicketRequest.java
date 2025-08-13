@@ -47,6 +47,15 @@ class CreatTicket{
 
     private Boolean isDeleted = false ;
 
+    private Boolean isReception = false;
 
     }
+@Data
+    class UpdateReception{
+    private Long id;
+    private Boolean isReception;
+
 }
+}
+
+

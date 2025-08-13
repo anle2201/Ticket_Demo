@@ -57,6 +57,9 @@ public class Ticket {
     @Column(nullable = true, name = "is_deleted")
     private Boolean isDeleted = false;
 
+    @Column(nullable = true, name = "is_reception")
+    private Boolean isReception = false;
+
 }
 
 

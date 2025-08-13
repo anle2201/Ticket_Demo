@@ -100,7 +100,6 @@ public class TicketMessageImp implements TicketMessageService {
             response.setSdt(ticketMessage.getSdt());
             response.setSoKhung(ticketMessage.getSoKhung());
 
-
             result.add(response);
         }
         return result;

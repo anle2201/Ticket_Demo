@@ -1,10 +1,8 @@
 package com.example.pro6.DTO.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
-import lombok.Data;
 
-import java.time.LocalDate;
+import lombok.Data;
 
 public interface TicketMessageRequest {
     @Data
@@ -26,13 +24,8 @@ public interface TicketMessageRequest {
         private String loaiHinh;
         private String loaiHinhNghiepVu;
         private String hienTruong;
-
-
         private String ngayTonThat;
-
-        @JsonFormat(pattern = "HH:mm")
         private String gioTonThat;
-
         private String diaDiemTonThat;
         private String moTaTonThat;
         private String laiXe;
@@ -108,8 +101,6 @@ class CreateAccident{
         private String emailGRSR;
         private String email247;
         private String passMail247;
-
-
     }
 @Data
 class CreateComplaints{
