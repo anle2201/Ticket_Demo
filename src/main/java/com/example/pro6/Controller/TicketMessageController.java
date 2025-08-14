@@ -100,7 +100,7 @@ public class TicketMessageController {
     }
 
     @PostMapping("/createCustomer")
-    public RespBean<Long> createCustomer(@RequestBody TicketMessageRequest.CreatCustomer customerRequest) {
+    public RespBean<Long> createCustomer(@RequestBody TicketMessageRequest.CreatCustomer customerRequest){
         try {
             Long newCustomerId = ticketMessageService.createCustomer(customerRequest);
             return RespBean.ok(ErrorCode.ERROR_0_STR, newCustomerId);
@@ -112,6 +112,7 @@ public class TicketMessageController {
     @PostMapping("/createAccident")
     public RespBean<Long> createAccident(@RequestBody TicketMessageRequest.CreateAccident accidentRequest) {
         try {
+
             Long newAccidentId = ticketMessageService.createAccident(accidentRequest);
             return RespBean.ok(ErrorCode.ERROR_0_STR, newAccidentId);
         } catch (Exception e) {

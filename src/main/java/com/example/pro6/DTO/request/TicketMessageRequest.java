@@ -37,7 +37,7 @@ public interface TicketMessageRequest {
         private String diaDiemGiamDinh;
         private String giamDinhVien;
         private String sdtGiamDinhVien;
-        private Long idTongDaiVien;
+        private String idTongDaiVien;
         private String sdtChuXe;
         private String ghiChu;
         private String diaChiSuaChua;
@@ -60,6 +60,7 @@ public interface TicketMessageRequest {
     }
 @Data
 class CreatCustomer{
+        private Long ticketId;
         private String tenKH;
         private String sdt;
         private String email;
@@ -71,6 +72,7 @@ class CreatCustomer{
     }
 @Data
 class CreateAccident{
+        private Long ticketId;
         private String nghiepVu;
         private String loaiHinh;
         private String loaiHinhNghiepVu;
@@ -95,7 +97,7 @@ class CreateAccident{
         private String giamDinhVien;
         private String sdtGiamDinhVien;
         private String ghiChu;
-        private Long idTongDaiVien;
+        private String idTongDaiVien;
         private String sdtChuXe;
         private String diaChiSuaChua;
         private String emailGRSR;
@@ -104,6 +106,7 @@ class CreateAccident{
     }
 @Data
 class CreateComplaints{
+        private Long ticketId;
         private String tenKH;
         private String sdt;
         private String nghiepVu;
@@ -120,6 +123,7 @@ class CreateComplaints{
 }
 @Data
     class CreateProduct{
+        private Long ticketId;
         private String nguoiLienHe;
         private String diaChi;
         private String noiDungCauHoi;
@@ -133,6 +137,7 @@ class CreateComplaints{
 
 @Data
     class CreateOther{
+        private Long ticketId;
         private String nguoiLienHe;
         private String noiDungTraoDoi;
         private String diaChi;

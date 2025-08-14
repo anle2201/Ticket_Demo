@@ -118,11 +118,8 @@ public class TicketServiceImp implements TicketService {
                 .orElseThrow(() -> new RuntimeException("Ticket ID không tồn tại"));
         ticket.setIsReception(request.getIsReception());
 
-
         return ticketRepository.save(ticket);
     }
-
-
 
     @Override
     public TicketResponse.Detail getDetail(Long id) {

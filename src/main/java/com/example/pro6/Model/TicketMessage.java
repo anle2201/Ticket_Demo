@@ -112,7 +112,7 @@ public class TicketMessage {
     private String sdtGiamDinhVien;
 
     @Column(nullable = true, name = "operator_id")
-    private Long idTongDaiVien;
+    private String idTongDaiVien;
 
     @Column(nullable = true, name = "owner_phone")
     private String sdtChuXe;

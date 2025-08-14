@@ -301,6 +301,7 @@ public class TicketMessageImp implements TicketMessageService {
     public Long createCustomer(TicketMessageRequest.CreatCustomer customerRequest) {
         try {
             TicketMessage newCustomer = new TicketMessage();
+            newCustomer.setTicketId(customerRequest.getTicketId());
             newCustomer.setTenKH(customerRequest.getTenKH());
             newCustomer.setSdt(customerRequest.getSdt());
             newCustomer.setEmail(customerRequest.getEmail());
@@ -345,6 +346,7 @@ public class TicketMessageImp implements TicketMessageService {
     public Long createProduct(TicketMessageRequest.CreateProduct productRequest) {
         try {
             TicketMessage newProduct = new TicketMessage();
+            newProduct.setTicketId(productRequest.getTicketId());
             newProduct.setNguoiLienHe(productRequest.getNguoiLienHe());
             newProduct.setDiaChi(productRequest.getDiaChi());
             newProduct.setNoiDungCauHoi(productRequest.getNoiDungCauHoi());
@@ -422,6 +424,7 @@ public class TicketMessageImp implements TicketMessageService {
     public Long createComplaints(TicketMessageRequest.CreateComplaints complaintsRequest) {
         try {
             TicketMessage newComplaint = new TicketMessage();
+            newComplaint.setTicketId(complaintsRequest.getTicketId());
             newComplaint.setNghiepVu(complaintsRequest.getNghiepVu());
             newComplaint.setSdt(complaintsRequest.getSdt());
             newComplaint.setTenKH(complaintsRequest.getTenKH());
@@ -469,6 +472,7 @@ public class TicketMessageImp implements TicketMessageService {
     public Long createOther(TicketMessageRequest.CreateOther otherRequest) {
         try {
             TicketMessage newOther = new TicketMessage();
+            newOther.setTicketId(otherRequest.getTicketId());
             newOther.setTongDaiVienXuLy(otherRequest.getTongDaiVienXuLy());
             newOther.setDiaChi(otherRequest.getDiaChi());
             newOther.setNguoiLienHe(otherRequest.getNguoiLienHe());
@@ -486,6 +490,7 @@ public class TicketMessageImp implements TicketMessageService {
     public Long createAccident(TicketMessageRequest.CreateAccident accidentRequest) {
         try {
             TicketMessage newAccident = new TicketMessage();
+            newAccident.setTicketId(accidentRequest.getTicketId());
             newAccident.setNghiepVu(accidentRequest.getNghiepVu());
             newAccident.setSdtLienHe(accidentRequest.getSdtLienHe());
             newAccident.setBienSoXe(accidentRequest.getBienSoXe());

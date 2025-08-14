@@ -3,7 +3,6 @@ package com.example.pro6.Service;
 import com.example.pro6.DTO.request.CustomFieldRequest;
 import com.example.pro6.DTO.response.CustomFieldResponse;
 import com.example.pro6.Model.CustomField;
-import com.example.pro6.Model.Ticket;
 import com.example.pro6.Repository.CustomFieldRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,10 +63,6 @@ public class CustomFieldImp implements CustomFieldService {
             return response;
         }).toList();
     }
-
-
-
-
 
     public CustomFieldResponse.Detail getDetail(Long id) {
         return fieldRepository.findById(id).map(field -> {

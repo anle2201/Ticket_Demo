@@ -41,7 +41,7 @@ public interface TicketMessageResponse {
     private String diaDiemGiamDinh;
     private String giamDinhVien;
     private String sdtGiamDinhVien;
-    private Long idTongDaiVien;
+    private String idTongDaiVien;
     private String sdtChuXe;
     private String ghiChu;
     private String diaChiSuaChua;
@@ -121,7 +121,7 @@ public interface TicketMessageResponse {
         private String giamDinhVien;
         private String sdtGiamDinhVien;
         private String ghiChu;
-        private Long idTongDaiVien;
+        private String idTongDaiVien;
         private String sdtChuXe;
         private String diaChiSuaChua;
         private String emailGRSR;
