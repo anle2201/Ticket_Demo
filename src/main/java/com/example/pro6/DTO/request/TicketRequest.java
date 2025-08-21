@@ -13,7 +13,7 @@ public interface TicketRequest {
 @Data
 class CreatTicket{
 
-    private String serialNumber;
+    //private String serialNumber;
 
     private String name;
 
@@ -41,18 +41,20 @@ class CreatTicket{
 
     private String assignedToCode;
 
-    private Timestamp createdAt;
+//    private Timestamp createdAt;
+//
+//    private Timestamp updatedAt;
 
-    private Timestamp updatedAt;
-
-    private Boolean isDeleted = false ;
-
-    private Boolean isReception = false;
+//    private Boolean isDeleted = false ;
+//
+//    private Boolean isReception = false;
 
     }
-@Data
-    class UpdateReception{
+    @Data
+    class UpdateReception {
+
     private Long id;
+
     private Boolean isReception;
 
 }

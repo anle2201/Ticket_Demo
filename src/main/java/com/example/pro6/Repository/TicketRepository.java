@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
-    @Query(nativeQuery = true, value = "SELECT * FROM tickets WHERE is_deleted = false ")
+
+    //@Query(nativeQuery = true, value = "SELECT * FROM tickets WHERE is_deleted = false ")
     Optional<Ticket> findByIdAndIsDeletedFalse(Long id);
 
 

@@ -24,4 +24,5 @@ public interface TicketService {
     List<Ticket> getPageStatus(Integer page, Integer size, String status);
 
     Ticket updateIsReception(TicketRequest.UpdateReception request);
+
 }

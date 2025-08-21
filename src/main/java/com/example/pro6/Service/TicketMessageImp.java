@@ -23,7 +23,7 @@ public class TicketMessageImp implements TicketMessageService {
     private TicketRepository ticketRepository;
 
 
-    public Long creat(TicketMessageRequest.CreatTicketMessage ticketMessageRequest) {
+    public Long create(TicketMessageRequest.CreatTicketMessage ticketMessageRequest) {
         try {
             TicketMessage newticketMessage = new TicketMessage();
             newticketMessage.setTicketId(ticketMessageRequest.getTicketId());
@@ -297,7 +297,6 @@ public class TicketMessageImp implements TicketMessageService {
 
     }
 
-
     public Long createCustomer(TicketMessageRequest.CreatCustomer customerRequest) {
         try {
             TicketMessage newCustomer = new TicketMessage();
@@ -371,6 +370,7 @@ public class TicketMessageImp implements TicketMessageService {
                 System.out.println("Product not found with id: " + id);
                 return null;
             }
+
             TicketMessage ticketMessage = optional.get();
             TicketMessageResponse.ProductDetail productDetail = new TicketMessageResponse.ProductDetail();
             productDetail.setNguoiLienHe(ticketMessage.getNguoiLienHe());
@@ -389,7 +389,6 @@ public class TicketMessageImp implements TicketMessageService {
             return null;
         }
     }
-
 
     public TicketMessageResponse.ComplaintsDetail getComplaintsDetail(Long id) {
         Optional<TicketMessage> optional = messageRepository.findById(id);
@@ -446,6 +445,7 @@ public class TicketMessageImp implements TicketMessageService {
             return -1L;
         }
     }
+
     public TicketMessageResponse.OtherDetail getOtherDetail(Long id) {
         Optional<TicketMessage> optional = messageRepository.findById(id);
         try {

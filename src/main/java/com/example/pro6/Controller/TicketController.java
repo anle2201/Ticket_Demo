@@ -26,7 +26,7 @@ public class TicketController {
         }
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public RespBean<TicketResponse.All> getDetail(@RequestParam(required = false) String business,
                                                   @RequestParam(required = false) String status,
                                                   @RequestParam(required = false) String priority,
@@ -40,7 +40,7 @@ public class TicketController {
         }
     }
 
-    @GetMapping("/getDetail")
+    @GetMapping("/detail")
     public RespBean<TicketResponse.Detail> getDetail(@RequestParam Long id) {
         try {
             return RespBean.ok(ErrorCode.ERROR_0_STR, ticketService.getDetail(id));
@@ -63,10 +63,12 @@ public class TicketController {
         try {
             return RespBean.ok(ErrorCode.ERROR_0_STR, ticketService.softDelete(id));
         } catch (Exception e) {
+            System.out.println("Error in delete: " + e.getMessage());
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, false);
         }
     }
-    @GetMapping("/getDetailWithMessages")
+
+    @GetMapping("/detail-with-messages")
     public RespBean<TicketResponse.All> getTicketWithMessages(@RequestParam Long ticketId) {
         try {
             return RespBean.ok(ErrorCode.ERROR_0_STR, ticketService.getTicketWithMessages(ticketId));
@@ -74,20 +76,23 @@ public class TicketController {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
-    @GetMapping("/getByStatus")
-    public RespBean<Ticket> getByStatus(@RequestParam Integer page , @RequestParam Integer size, @RequestParam String status) {
+
+    @GetMapping("/by-status")
+    public RespBean<Ticket> getByStatus(@RequestParam (required = false) Integer page , @RequestParam (required = false) Integer size, @RequestParam String status) {
         try {
             return RespBean.ok(ErrorCode.ERROR_0_STR, ticketService.getPageStatus(page, size, status));
         } catch (Exception e) {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, null);
         }
     }
-    @PostMapping("/updateReception")
+
+    @PostMapping("/update-reception")
     public RespBean<Ticket> updateReception(@RequestBody TicketRequest.UpdateReception request) {
         try {
             ticketService.updateIsReception(request);
             return RespBean.ok(ErrorCode.ERROR_0_STR, true);
         } catch (Exception e) {
+            System.out.println("Error in update reception: " + e.getMessage());
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, false);
         }
     }

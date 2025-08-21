@@ -17,7 +17,7 @@ public class RespBean<T> {
         return new RespBean(0, 200, msg, null);
     }
 
-    public static  RespBean ok(String msg, Object data) {
+    public static RespBean ok(String msg, Object data) {
 
         return new RespBean(0, 200, msg, data);
     }
@@ -48,7 +48,6 @@ public class RespBean<T> {
         this.msg = msg;
         this.data = data;
     }
-
 
     public int getStatus() {
 

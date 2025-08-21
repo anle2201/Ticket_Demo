@@ -28,6 +28,7 @@ public class CustomFieldImp implements CustomFieldService {
             newCustomField.setProjectId(customFieldRequest.getProjectId());
             newCustomField.setCreatedAt(new Timestamp(System.currentTimeMillis()));
             newCustomField.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+            newCustomField.setIsDeleted(false);
             return fieldRepository.save(newCustomField);
         } catch (Exception e) {
             throw new RuntimeException("Error creating custom field: " + e.getMessage());
@@ -79,6 +80,7 @@ public class CustomFieldImp implements CustomFieldService {
             return detail;
         }).orElseThrow(() -> new RuntimeException("Custom field not found"));
     }
+
     public Boolean softDelete(Long id) {
         try {
             Optional<CustomField> customFieldOpt = fieldRepository.findByIdAndIsDeletedFalse(id);

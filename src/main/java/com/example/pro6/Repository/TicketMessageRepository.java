@@ -26,7 +26,7 @@ public interface TicketMessageRepository extends JpaRepository<TicketMessage, Lo
             String status,
             String priority,
             String giveTo,
-            String typeAccident );
+            String typeAccident);
 
 }
 

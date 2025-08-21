@@ -25,7 +25,7 @@ public interface CustomFieldRequest {
 
         private Timestamp updatedAt;
 
-        private Boolean isDeleted = false;
+        //private Boolean isDeleted = false;
 
     }
 }

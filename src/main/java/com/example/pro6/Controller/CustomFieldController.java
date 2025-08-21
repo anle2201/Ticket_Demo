@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/customFields")
+@RequestMapping("/api/custom-fields")
 public class CustomFieldController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class CustomFieldController {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
-    @GetMapping("/getDetail")
+    @GetMapping("/detail")
     public RespBean<CustomField> getDetail(@RequestParam Long id) {
         try {
             return RespBean.ok(ErrorCode.ERROR_0_STR, fieldService.getDetail(id));
@@ -53,7 +53,7 @@ public class CustomFieldController {
         }
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public RespBean<List<CustomFieldResponse.All>> getAll() {
         try {
             return RespBean.ok(ErrorCode.ERROR_0_STR, fieldService.getAll());
@@ -61,6 +61,4 @@ public class CustomFieldController {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
-
-
 }

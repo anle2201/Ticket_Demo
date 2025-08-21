@@ -12,7 +12,7 @@ public interface TicketMessageService {
 
     List<TicketMessageResponse.Detail> getAll(String status, String priority, String giveTo,String typeAccident,String CCs );
 
-    Long creat(TicketMessageRequest.CreatTicketMessage ticketMessageRequest);
+    Long create(TicketMessageRequest.CreatTicketMessage ticketMessageRequest);
 
     boolean checkExistTicketId(Long ticketId);
 

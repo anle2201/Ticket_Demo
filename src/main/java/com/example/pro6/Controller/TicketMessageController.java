@@ -12,7 +12,7 @@ import com.example.pro6.Service.TicketMessageService;
 
 
 @RestController
-@RequestMapping("/api/ticketMessages")
+@RequestMapping("/api/ticket-messages")
 public class TicketMessageController {
 
     @Autowired
@@ -26,16 +26,14 @@ public class TicketMessageController {
             if (!isExist) {
                 return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
             }
-            Long newticketMessage = ticketMessageService.creat(ticketMessage);
+            Long newticketMessage = ticketMessageService.create(ticketMessage);
             return RespBean.ok(ErrorCode.ERROR_0_STR, newticketMessage);
-
         } catch (Exception e) {
-
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public RespBean<TicketMessageResponse.Detail> getAllTicketMessages( @RequestParam (required = false) String status,
                                                                        @RequestParam (required = false) String priority,
                                                                        @RequestParam (required = false) String giveTo,
@@ -48,8 +46,7 @@ public class TicketMessageController {
         }
     }
 
-
-    @GetMapping("/getByTicketId")
+    @GetMapping("/by-ticket-id")
     public RespBean<Long> getMessagesByTicketId(@RequestParam Long ticketId) {
         try {
             boolean isExist = ticketMessageService.checkExistTicketId(ticketId);
@@ -62,7 +59,7 @@ public class TicketMessageController {
         }
     }
 
-    @GetMapping("/getDetail")
+    @GetMapping("/get-detail")
     public RespBean<TicketMessageResponse.All> getDetail(@RequestParam Long id) {
         try {
             boolean isExist = ticketMessageService.checkExistTicketMessage(id);
@@ -99,7 +96,7 @@ public class TicketMessageController {
         }
     }
 
-    @PostMapping("/createCustomer")
+    @PostMapping("/create-customer")
     public RespBean<Long> createCustomer(@RequestBody TicketMessageRequest.CreatCustomer customerRequest){
         try {
             Long newCustomerId = ticketMessageService.createCustomer(customerRequest);
@@ -109,7 +106,7 @@ public class TicketMessageController {
         }
     }
 
-    @PostMapping("/createAccident")
+    @PostMapping("/create-accident")
     public RespBean<Long> createAccident(@RequestBody TicketMessageRequest.CreateAccident accidentRequest) {
         try {
 
@@ -120,7 +117,7 @@ public class TicketMessageController {
         }
     }
 
-    @PostMapping("/createComplaints")
+    @PostMapping("/create-complaints")
     public RespBean<Long> createComplaints(@RequestBody TicketMessageRequest.CreateComplaints complaintsRequest) {
         try {
             Long newComplaintsId = ticketMessageService.createComplaints(complaintsRequest);
@@ -130,7 +127,7 @@ public class TicketMessageController {
         }
     }
 
-    @PostMapping("/createProduct")
+    @PostMapping("/create-product")
     public RespBean<Long> createProduct(@RequestBody TicketMessageRequest.CreateProduct productRequest) {
         try {
             Long newProductId = ticketMessageService.createProduct(productRequest);
@@ -140,7 +137,7 @@ public class TicketMessageController {
         }
     }
 
-    @PostMapping("/createOther")
+    @PostMapping("/create-other")
     public RespBean<Long> createOther(@RequestBody TicketMessageRequest.CreateOther otherRequest) {
         try {
             Long newOtherId = ticketMessageService.createOther(otherRequest);
@@ -150,7 +147,7 @@ public class TicketMessageController {
         }
     }
 
-    @GetMapping("/getCustomer")
+    @GetMapping("/get-customer")
     public RespBean<TicketMessageResponse.CustomerDetail> getCustomer(@RequestParam Long id) {
         try {
             boolean isExist = ticketMessageService.checkExistTicketMessage(id);
@@ -163,7 +160,7 @@ public class TicketMessageController {
         }
     }
 
-    @GetMapping("/getAccident")
+    @GetMapping("/get-accident")
     public RespBean<TicketMessageResponse.AccidentDetail> getAccident(@RequestParam Long id) {
         try {
             boolean isExist = ticketMessageService.checkExistTicketMessage(id);
@@ -176,7 +173,7 @@ public class TicketMessageController {
         }
     }
 
-    @GetMapping("/getComplaints")
+    @GetMapping("/get-complaints")
     public RespBean<TicketMessageResponse.ComplaintsDetail> getComplaints(@RequestParam Long id) {
         try {
             boolean isExist = ticketMessageService.checkExistTicketMessage(id);
@@ -189,7 +186,7 @@ public class TicketMessageController {
         }
     }
 
-    @GetMapping("/getProduct")
+    @GetMapping("/get-product")
     public RespBean<TicketMessageResponse.ProductDetail> getProduct(@RequestParam Long id) {
         try {
             boolean isExist = ticketMessageService.checkExistTicketMessage(id);
@@ -202,7 +199,7 @@ public class TicketMessageController {
         }
     }
 
-    @GetMapping("/getOther")
+    @GetMapping("/get-other")
     public RespBean<TicketMessageResponse.OtherDetail> getOther(@RequestParam Long id) {
         try {
             boolean isExist = ticketMessageService.checkExistTicketMessage(id);

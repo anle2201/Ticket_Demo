@@ -1,6 +1,7 @@
 package com.example.pro6.Library;
 
 public interface ErrorCode {
+
     public static Integer ERROR_500 = 500;
     public static String ERROR_500_STR = "server error";
     public static Integer ERROR__1 = -1;
