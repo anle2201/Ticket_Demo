@@ -34,11 +34,11 @@ public class TicketMessageController {
     }
 
     @GetMapping("/all")
-    public RespBean<TicketMessageResponse.Detail> getAllTicketMessages(@RequestParam (required = false) String status,
-                                                                       @RequestParam (required = false) String priority,
-                                                                       @RequestParam (required = false) String giveTo,
-                                                                       @RequestParam (required = false) String typeAccident,
-                                                                       @RequestParam (required = false) String CCs) {
+    public RespBean<TicketMessageResponse.Detail> getAllTicketMessages(@RequestParam(required = false) String status,
+                                                                       @RequestParam(required = false) String priority,
+                                                                       @RequestParam(required = false) String giveTo,
+                                                                       @RequestParam(required = false) String typeAccident,
+                                                                       @RequestParam(required = false) String CCs) {
         try {
             return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getAll(status, priority, giveTo, typeAccident, CCs));
         } catch (Exception e) {
@@ -97,7 +97,7 @@ public class TicketMessageController {
     }
 
     @PostMapping("/create-customer")
-    public RespBean<Long> createCustomer(@RequestBody TicketMessageRequest.CreatCustomer customerRequest){
+    public RespBean<Long> createCustomer(@RequestBody TicketMessageRequest.CreatCustomer customerRequest) {
         try {
             Long newCustomerId = ticketMessageService.createCustomer(customerRequest);
             return RespBean.ok(ErrorCode.ERROR_0_STR, newCustomerId);
@@ -210,5 +210,86 @@ public class TicketMessageController {
         } catch (Exception e) {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
+    }
+
+    @PostMapping("/update-customer")
+    public RespBean<TicketMessage> updateCustomer(@RequestBody TicketMessageRequest.CreatCustomer customerRequest) {
+        try {
+            boolean isExist = ticketMessageService.checkExistTicketId(customerRequest.getTicketId());
+            if (!isExist) {
+                System.out.println("Ticket message does not exist for TicketID: " + customerRequest.getTicketId());
+                return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
+            }
+            TicketMessageRequest.CreatCustomer updated = ticketMessageService.updateCustomer(customerRequest);
+            return RespBean.ok(ErrorCode.ERROR_0_STR, updated);
+        } catch (Exception e) {
+            System.out.println("Error updating customer: " + e);
+            return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, 1);
+        }
+    }
+
+    @PostMapping("/update-accident")
+    public RespBean<TicketMessage> updateAccident(@RequestBody TicketMessageRequest.CreateAccident accidentRequest) {
+        try {
+            boolean isExist = ticketMessageService.checkExistTicketId(accidentRequest.getTicketId());
+            if (!isExist) {
+                System.out.println("Ticket message does not exist for TicketID: " + accidentRequest.getTicketId());
+                return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
+            }
+            TicketMessageRequest.CreateAccident updated = ticketMessageService.updateAccident(accidentRequest);
+            return RespBean.ok(ErrorCode.ERROR_0_STR, updated);
+        } catch (Exception e) {
+            System.out.println("Error updating accident: " + e);
+            return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, 1);
+        }
+    }
+
+    @PostMapping("/update-complaints")
+    public RespBean<TicketMessage> updateComplaints(@RequestBody TicketMessageRequest.CreateComplaints complaintsRequest) {
+        try {
+            boolean isExist = ticketMessageService.checkExistTicketId(complaintsRequest.getTicketId());
+            if (!isExist) {
+                System.out.println("Ticket message does not exist for TicketID: " + complaintsRequest.getTicketId());
+                return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
+            }
+            TicketMessageRequest.CreateComplaints updated = ticketMessageService.updateComplaints(complaintsRequest);
+            return RespBean.ok(ErrorCode.ERROR_0_STR, updated);
+        } catch (Exception e) {
+            System.out.println("Error updating complaints: " + e);
+            return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, 1);
+        }
+    }
+
+    @PostMapping("/update-product")
+    public RespBean<TicketMessage> updateProduct(@RequestBody TicketMessageRequest.CreateProduct productRequest) {
+        try {
+            boolean isExist = ticketMessageService.checkExistTicketId(productRequest.getTicketId());
+            if (!isExist) {
+                System.out.println("Ticket message does not exist for TicketID: " + productRequest.getTicketId());
+                return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
+            }
+            TicketMessageRequest.CreateProduct updated = ticketMessageService.updateProduct(productRequest);
+            return RespBean.ok(ErrorCode.ERROR_0_STR, updated);
+        } catch (Exception e) {
+            System.out.println("Error updating product: " + e);
+            return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, 1);
+        }
+    }
+
+    @PostMapping("/update-other")
+    public RespBean<TicketMessage> updateOther(@RequestBody TicketMessageRequest.CreateOther otherRequest) {
+        try {
+            boolean isExist = ticketMessageService.checkExistTicketId(otherRequest.getTicketId());
+            if (!isExist) {
+                System.out.println("Ticket message does not exist for TicketID: " + otherRequest.getTicketId());
+                return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
+            }
+            TicketMessageRequest.CreateOther updated = ticketMessageService.updateOther(otherRequest);
+            return RespBean.ok(ErrorCode.ERROR_0_STR, updated);
+        } catch (Exception e) {
+            System.out.println("Error updating other: " + e);
+            return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, 1);
+        }
+
     }
 }

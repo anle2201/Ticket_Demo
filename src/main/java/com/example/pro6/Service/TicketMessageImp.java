@@ -87,7 +87,7 @@ public class TicketMessageImp implements TicketMessageService {
         }
     }
 
-    public List<TicketMessageResponse.Detail> getAll(String status, String priority, String giveTo,String typeAccident,String CCs ) {
+    public List<TicketMessageResponse.Detail> getAll(String status, String priority, String giveTo, String typeAccident, String CCs) {
 
         List<TicketMessage> ticketMessages = messageRepository.searchAll(status, priority, giveTo, typeAccident, CCs);
         List<TicketMessageResponse.Detail> result = new ArrayList<>();
@@ -117,7 +117,7 @@ public class TicketMessageImp implements TicketMessageService {
         return messageRepository.existsById(ticketMessageId);
     }
 
-    public List<TicketMessage> getMessagesByTicketId(Long ticketId) {
+    public Optional<TicketMessage> getMessagesByTicketId(Long ticketId) {
         if (!ticketRepository.existsById(ticketId)) {
             System.out.println("Không tồn tại ticket với id = " + ticketId);
         }
@@ -265,6 +265,7 @@ public class TicketMessageImp implements TicketMessageService {
                 System.out.println("Customer not found with id: " + id);
                 return null;
             }
+
             TicketMessage ticketMessage = optional.get();
             TicketMessageResponse.AccidentDetail accidentDetail = new TicketMessageResponse.AccidentDetail();
             accidentDetail.setNghiepVu(ticketMessage.getNghiepVu());
@@ -563,4 +564,142 @@ public class TicketMessageImp implements TicketMessageService {
             return null;
         }
     }
+
+    public TicketMessageRequest.CreatCustomer updateCustomer(TicketMessageRequest.CreatCustomer customerRequest) {
+        try {
+            TicketMessage ticketMessage = messageRepository.findByTicketId(customerRequest.getTicketId())
+                    .orElseThrow(() -> new RuntimeException("Ticket message not found"));
+            ticketMessage.setTicketId(customerRequest.getTicketId());
+            ticketMessage.setTenKH(customerRequest.getTenKH());
+            ticketMessage.setSdt(customerRequest.getSdt());
+            ticketMessage.setEmail(customerRequest.getEmail());
+            ticketMessage.setBienSoXe(customerRequest.getBienSoXe());
+            ticketMessage.setDonViCap(customerRequest.getDonViCap());
+            ticketMessage.setNgayHL(customerRequest.getNgayHL());
+            ticketMessage.setNgayHetHL(customerRequest.getNgayHetHL());
+
+            messageRepository.save(ticketMessage);
+            return customerRequest;
+        } catch (Exception e) {
+            System.out.println("Error updating customer message: " + e.getMessage());
+            return null;
+        }
+
+    }
+
+    public TicketMessageRequest.CreateAccident updateAccident(TicketMessageRequest.CreateAccident accidentRequest) {
+        try {
+            TicketMessage ticketMessage = messageRepository.findByTicketId(accidentRequest.getTicketId())
+                    .orElseThrow(() -> new RuntimeException("Ticket message not found"));
+            ticketMessage.setTicketId(accidentRequest.getTicketId());
+            ticketMessage.setNghiepVu(accidentRequest.getNghiepVu());
+            ticketMessage.setSdtLienHe(accidentRequest.getSdtLienHe());
+            ticketMessage.setBienSoXe(accidentRequest.getBienSoXe());
+            ticketMessage.setTenNguoiThongBao(accidentRequest.getTenNguoiThongBao());
+            ticketMessage.setSdtNguoiThongBao(accidentRequest.getSdtNguoiThongBao());
+            ticketMessage.setSoGCNBaoHiem(accidentRequest.getSoGCNBaoHiem());
+            ticketMessage.setNguoiThongBao(accidentRequest.getNguoiThongBao());
+            ticketMessage.setLoaiHinh(accidentRequest.getLoaiHinh());
+            ticketMessage.setLoaiHinhNghiepVu(accidentRequest.getLoaiHinhNghiepVu());
+            ticketMessage.setHienTruong(accidentRequest.getHienTruong());
+            ticketMessage.setNgayTonThat(accidentRequest.getNgayTonThat());
+            ticketMessage.setGioTonThat(accidentRequest.getGioTonThat());
+            ticketMessage.setDiaDiemTonThat(accidentRequest.getDiaDiemTonThat());
+            ticketMessage.setMoTaTonThat(accidentRequest.getMoTaTonThat());
+            ticketMessage.setLaiXe(accidentRequest.getLaiXe());
+            ticketMessage.setTinhThanh(accidentRequest.getTinhThanh());
+            ticketMessage.setPhuongXa(accidentRequest.getPhuongXa());
+            ticketMessage.setHauQua(accidentRequest.getHauQua());
+            ticketMessage.setNhomNguyenNhan(accidentRequest.getNhomNguyenNhan());
+            ticketMessage.setHauQuaBenThuBa(accidentRequest.getHauQuaBenThuBa());
+            ticketMessage.setTenNguoiThongBao(accidentRequest.getTenNguoiThongBao());
+            ticketMessage.setDiaDiemGiamDinh(accidentRequest.getDiaDiemGiamDinh());
+            ticketMessage.setGiamDinhVien(accidentRequest.getGiamDinhVien());
+            ticketMessage.setSdtGiamDinhVien(accidentRequest.getSdtGiamDinhVien());
+            ticketMessage.setIdTongDaiVien(accidentRequest.getIdTongDaiVien());
+            ticketMessage.setSdtChuXe(accidentRequest.getSdtChuXe());
+            ticketMessage.setGhiChu(accidentRequest.getGhiChu());
+            ticketMessage.setDiaChiSuaChua(accidentRequest.getDiaChiSuaChua());
+            ticketMessage.setEmailGRSR(accidentRequest.getEmailGRSR());
+            ticketMessage.setEmail247(accidentRequest.getEmail247());
+            ticketMessage.setPassMail247(accidentRequest.getPassMail247());
+            ticketMessage.setIsGiamDinhTrungDiaDiem(accidentRequest.getIsGiamDinhTrungDiaDiem());
+            ticketMessage.setDiaDiemDeNghi(accidentRequest.getDiaDiemDeNghi());
+            ticketMessage.setNguyenNhanChiTiet(accidentRequest.getNguyenNhanChiTiet());
+            messageRepository.save(ticketMessage);
+            return accidentRequest;
+        } catch (Exception e) {
+            System.out.println("Error updating accident message: " + e.getMessage());
+            return null;
+        }
+    }
+
+        public TicketMessageRequest.CreateComplaints updateComplaints(TicketMessageRequest.CreateComplaints complaintsRequest) {
+            try{
+                TicketMessage ticketMessage = messageRepository.findByTicketId(complaintsRequest.getTicketId())
+                        .orElseThrow(() -> new RuntimeException("Ticket message not found"));
+                ticketMessage.setTicketId(complaintsRequest.getTicketId());
+                ticketMessage.setTenKH(complaintsRequest.getTenKH());
+                ticketMessage.setSdt(complaintsRequest.getSdt());
+                ticketMessage.setNghiepVu(complaintsRequest.getNghiepVu());
+                ticketMessage.setNgayTonThat(complaintsRequest.getNgayTonThat());
+                ticketMessage.setGioTonThat(complaintsRequest.getGioTonThat());
+                ticketMessage.setNgayMICHoSo(complaintsRequest.getNgayMICHoSo());
+                ticketMessage.setNoiDung(complaintsRequest.getNoiDung());
+                ticketMessage.setEmailCanBoXuLy(complaintsRequest.getEmailCanBoXuLy());
+                ticketMessage.setNoiDungEmail(complaintsRequest.getNoiDungEmail());
+                ticketMessage.setTongDaiVienXuLy(complaintsRequest.getTongDaiVienXuLy());
+                ticketMessage.setTrangThaiXuLy(complaintsRequest.getTrangThaiXuLy());
+                ticketMessage.setGhiChu(complaintsRequest.getGhiChu());
+                messageRepository.save(ticketMessage);
+                return complaintsRequest;
+            }   catch (Exception e) {
+                System.out.println("Error updating complaints message: " + e.getMessage());
+                return null;
+            }
+        }
+    public TicketMessageRequest.CreateProduct updateProduct(TicketMessageRequest.CreateProduct productRequest){
+        try{
+            TicketMessage ticketMessage = messageRepository.findByTicketId(productRequest.getTicketId())
+                    .orElseThrow(() -> new RuntimeException("Ticket message not found"));
+            ticketMessage.setTicketId(productRequest.getTicketId());
+            ticketMessage.setNguoiLienHe(productRequest.getNguoiLienHe());
+            ticketMessage.setDiaChi(productRequest.getDiaChi());
+            ticketMessage.setNoiDungCauHoi(productRequest.getNoiDungCauHoi());
+            ticketMessage.setNghiepVu(productRequest.getNghiepVu());
+            ticketMessage.setEmailCanBoXuLy(productRequest.getEmailCanBoXuLy());
+            ticketMessage.setNoiDungEmail(productRequest.getNoiDungEmail());
+            ticketMessage.setTongDaiVienXuLy(productRequest.getTongDaiVienXuLy());
+            ticketMessage.setGhiChu(productRequest.getGhiChu());
+            messageRepository.save(ticketMessage);
+            return productRequest;
+        } catch (Exception e) {
+            System.out.println("Error updating product message: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public TicketMessageRequest.CreateOther updateOther(TicketMessageRequest.CreateOther otherRequest) {
+        try {
+            TicketMessage ticketMessage = messageRepository.findByTicketId(otherRequest.getTicketId())
+                    .orElseThrow(() -> new RuntimeException("Ticket message not found"));
+            ticketMessage.setTicketId(otherRequest.getTicketId());
+            ticketMessage.setNguoiLienHe(otherRequest.getNguoiLienHe());
+            ticketMessage.setNguoiLienHe(otherRequest.getNguoiLienHe());
+            ticketMessage.setDiaChi(otherRequest.getDiaChi());
+            ticketMessage.setTongDaiVienXuLy(otherRequest.getTongDaiVienXuLy());
+            ticketMessage.setGhiChu(otherRequest.getGhiChu());
+            messageRepository.save(ticketMessage);
+            return otherRequest;
+        } catch (Exception e) {
+            System.out.println("Error updating other message: " + e.getMessage());
+            return null;
+        }
+
+
+    }
 }
+
+
+
+

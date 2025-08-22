@@ -21,7 +21,6 @@ public interface TicketResponse {
 
         private String business;
 
-
         public enum Priority {
             low, normal, high, urgent
         }
@@ -35,7 +34,6 @@ public interface TicketResponse {
 
         @Enumerated(EnumType.STRING)
         private Ticket.Priority priority;
-
 
         private String createdByCode;
 

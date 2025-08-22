@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TicketMessageRepository extends JpaRepository<TicketMessage, Long> {
-    List<TicketMessage> findByTicketId(Long ticketId);
+    Optional<TicketMessage> findByTicketId(Long ticketId);
 
     Optional<TicketMessage> findById(Long id);
 

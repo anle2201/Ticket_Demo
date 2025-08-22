@@ -6,6 +6,7 @@ import com.example.pro6.Model.TicketMessage;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface TicketMessageService {
@@ -18,7 +19,7 @@ public interface TicketMessageService {
 
     boolean checkExistTicketMessage(Long ticketId);
 
-    List<TicketMessage> getMessagesByTicketId(Long ticketId);
+    Optional<TicketMessage> getMessagesByTicketId(Long ticketId);
 
     TicketMessageResponse.All getDetail(Long id);
 
@@ -45,6 +46,16 @@ public interface TicketMessageService {
     TicketMessageResponse.ProductDetail getProductDetail(Long id);
 
     TicketMessageResponse.OtherDetail getOtherDetail(Long id);
+
+    TicketMessageRequest.CreatCustomer updateCustomer(TicketMessageRequest.CreatCustomer customerRequest);
+
+    TicketMessageRequest.CreateAccident updateAccident(TicketMessageRequest.CreateAccident accidentRequest);
+
+    TicketMessageRequest.CreateComplaints updateComplaints(TicketMessageRequest.CreateComplaints complaintsRequest);
+
+    TicketMessageRequest.CreateProduct updateProduct(TicketMessageRequest.CreateProduct productRequest);
+
+    TicketMessageRequest.CreateOther updateOther(TicketMessageRequest.CreateOther otherRequest);
 }
 
 

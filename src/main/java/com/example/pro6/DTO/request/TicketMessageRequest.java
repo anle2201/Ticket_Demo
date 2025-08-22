@@ -1,7 +1,5 @@
 package com.example.pro6.DTO.request;
 
-
-import jakarta.persistence.Column;
 import lombok.Data;
 
 public interface TicketMessageRequest {
