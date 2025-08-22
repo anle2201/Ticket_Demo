@@ -76,6 +76,9 @@ public class TicketMessageImp implements TicketMessageService {
             newticketMessage.setNoiDungCauHoi(ticketMessageRequest.getNoiDungCauHoi());
             newticketMessage.setNoiDungTraoDoi(ticketMessageRequest.getNoiDungTraoDoi());
             newticketMessage.setLoaiLuaChon(ticketMessageRequest.getLoaiLuaChon());
+            newticketMessage.setNguyenNhanChiTiet(ticketMessageRequest.getNguyenNhanChiTiet());
+            newticketMessage.setDiaDiemDeNghi(ticketMessageRequest.getDiaDiemDeNghi());
+            newticketMessage.setIsGiamDinhTrungDiaDiem(ticketMessageRequest.getIsGiamDinhTrungDiaDiem());
             TicketMessage newTicketMessage = messageRepository.save(newticketMessage);
             return newTicketMessage.getId();
         } catch (Exception e) {
@@ -113,7 +116,6 @@ public class TicketMessageImp implements TicketMessageService {
     public boolean checkExistTicketMessage(Long ticketMessageId) {
         return messageRepository.existsById(ticketMessageId);
     }
-
 
     public List<TicketMessage> getMessagesByTicketId(Long ticketId) {
         if (!ticketRepository.existsById(ticketId)) {
@@ -184,6 +186,10 @@ public class TicketMessageImp implements TicketMessageService {
             detail.setNoiDungCauHoi(ticketMessage.getNoiDungCauHoi());
             detail.setNoiDungTraoDoi(ticketMessage.getNoiDungTraoDoi());
             detail.setLoaiLuaChon(ticketMessage.getLoaiLuaChon());
+            detail.setDiaDiemDeNghi(ticketMessage.getDiaDiemDeNghi());
+            detail.setNguyenNhanChiTiet(ticketMessage.getNguyenNhanChiTiet());
+            detail.setIsGiamDinhTrungDiaDiem(ticketMessage.getIsGiamDinhTrungDiaDiem());
+
             return detail;
         } catch (Exception e) {
             System.out.println("Error retrieving ticket message: " + e.getMessage());
@@ -246,7 +252,9 @@ public class TicketMessageImp implements TicketMessageService {
         existing.setNgayMICHoSo(updatedData.getNgayMICHoSo());
         existing.setNoiDung(updatedData.getNoiDung());
         existing.setDiaChi(updatedData.getDiaChi());
-
+        existing.setIsGiamDinhTrungDiaDiem(updatedData.getIsGiamDinhTrungDiaDiem());
+        existing.setDiaDiemDeNghi(updatedData.getDiaDiemDeNghi());
+        existing.setNguyenNhanChiTiet(updatedData.getNguyenNhanChiTiet());
         return messageRepository.save(existing);
     }
 
@@ -289,7 +297,13 @@ public class TicketMessageImp implements TicketMessageService {
             accidentDetail.setEmailGRSR(ticketMessage.getEmailGRSR());
             accidentDetail.setEmail247(ticketMessage.getEmail247());
             accidentDetail.setPassMail247(ticketMessage.getPassMail247());
+            accidentDetail.setIsGiamDinhTrungDiaDiem(ticketMessage.getIsGiamDinhTrungDiaDiem());
+            accidentDetail.setNguyenNhanChiTiet(ticketMessage.getNguyenNhanChiTiet());
+            accidentDetail.setDiaDiemDeNghi(ticketMessage.getDiaDiemDeNghi());
+
             return accidentDetail;
+
+
         } catch (Exception e) {
             System.out.println("Error retrieving accident detail: " + e.getMessage());
             return null;
@@ -523,6 +537,9 @@ public class TicketMessageImp implements TicketMessageService {
             newAccident.setEmailGRSR(accidentRequest.getEmailGRSR());
             newAccident.setEmail247(accidentRequest.getEmail247());
             newAccident.setPassMail247(accidentRequest.getPassMail247());
+            newAccident.setIsGiamDinhTrungDiaDiem(accidentRequest.getIsGiamDinhTrungDiaDiem());
+            newAccident.setDiaDiemDeNghi(accidentRequest.getDiaDiemDeNghi());
+            newAccident.setNguyenNhanChiTiet(accidentRequest.getNguyenNhanChiTiet());
             newAccident.setLoaiLuaChon("Tổn thất");
             TicketMessage newAccidentMessage = messageRepository.save(newAccident);
             return newAccidentMessage.getId();

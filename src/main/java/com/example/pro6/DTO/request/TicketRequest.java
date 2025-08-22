@@ -41,6 +41,8 @@ class CreatTicket{
 
     private String assignedToCode;
 
+    private String projectCode;
+
 //    private Timestamp createdAt;
 //
 //    private Timestamp updatedAt;

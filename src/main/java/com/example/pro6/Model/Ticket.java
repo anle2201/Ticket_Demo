@@ -60,6 +60,9 @@ public class Ticket {
     @Column(nullable = true, name = "is_reception")
     private Boolean isReception = false;
 
+    @Column(nullable = true, name = "project_code")
+    private String projectCode;
+
 }
 
 

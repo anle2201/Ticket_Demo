@@ -14,7 +14,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,7 +32,7 @@ public class TicketServiceImp implements TicketService {
             Ticket newticket = new Ticket();
             String serial;
             do {
-                serial = generateSerialNumber();
+                serial = generateSerialNumber(ticketRequest.getName());
             } while (ticketRepository.existsBySerialNumber(serial));
 
             newticket.setSerialNumber(serial);
@@ -47,6 +46,7 @@ public class TicketServiceImp implements TicketService {
             newticket.setName(ticketRequest.getName());
             newticket.setIsDeleted(false);
             newticket.setIsReception(false);
+            newticket.setProjectCode(ticketRequest.getProjectCode());
             newticket.setCreatedAt(new Timestamp(System.currentTimeMillis()));
             newticket.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
             ticketRepository.save(newticket);
@@ -58,9 +58,14 @@ public class TicketServiceImp implements TicketService {
         }
     }
 
-    private String generateSerialNumber() {
-        int randomNum = new Random().nextInt(10_000_000);
-        return String.format("%07d", randomNum);
+    private String generateSerialNumber(String name) {
+
+        String clean = (name == null) ? "" : name.trim();
+        String prefix = clean.length() >= 2 ? clean.substring(0, 2).toLowerCase()
+                : (clean.isEmpty() ? "xx" : clean.toLowerCase());
+
+        int next = ticketRepository.getMaxSerialSuffix() + 1;
+        return String.format("%s-%02d", prefix, next);
     }
 
     public TicketResponse.AllWithMessages getTicketWithMessages(Long ticketId) {
@@ -105,6 +110,7 @@ public class TicketServiceImp implements TicketService {
                 dto.setCreatedAt(ticket.getCreatedAt());
                 dto.setUpdatedAt(ticket.getUpdatedAt());
                 dto.setSerialNumber(ticket.getSerialNumber());
+                dto.setProjectCode(ticket.getProjectCode());
                 result.add(dto);
             }
             return result;
@@ -128,7 +134,6 @@ public class TicketServiceImp implements TicketService {
             if (optionalTicket.isEmpty()) {
                 throw new RuntimeException("Không tìm thấy ticket với ID: " + id);
             }
-
             Ticket ticket = optionalTicket.get();
             TicketResponse.Detail detail = new TicketResponse.Detail();
             detail.setId(ticket.getId());
@@ -137,7 +142,7 @@ public class TicketServiceImp implements TicketService {
             detail.setGiveTo(ticket.getGiveTo());
             detail.setContact(ticket.getContact());
             detail.setBusiness(ticket.getBusiness());
-
+            detail.setProjectCode(ticket.getProjectCode());
             return detail;
         } catch (Exception e) {
             System.out.println("Error get detail ticket: " + e.getMessage());
@@ -157,6 +162,7 @@ public class TicketServiceImp implements TicketService {
             ticket.setStatus(updated.getStatus());
             ticket.setPriority(updated.getPriority());
             ticket.setAssignedToCode(updated.getAssignedToCode());
+            ticket.setProjectCode(updated.getProjectCode());
             ticket.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
             return ticketRepository.save(ticket);
         }).orElseThrow(() -> new RuntimeException("Ticket not found"));

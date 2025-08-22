@@ -26,8 +26,9 @@ public interface CustomFieldResponse {
 
         private Timestamp updatedAt;
     }
-   @Data
-   class All{
+
+    @Data
+    class All{
        private Long id;
 
        private String name;

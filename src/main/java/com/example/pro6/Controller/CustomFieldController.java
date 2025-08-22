@@ -36,6 +36,7 @@ public class CustomFieldController {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
+
     @GetMapping("/detail")
     public RespBean<CustomField> getDetail(@RequestParam Long id) {
         try {
@@ -44,6 +45,7 @@ public class CustomFieldController {
             return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
         }
     }
+
     @DeleteMapping("/delete")
     public RespBean<CustomField> delete(@RequestParam Long id) {
         try {

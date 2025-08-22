@@ -37,5 +37,12 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM tickets WHERE status ILIKE %:keySearch% AND is_deleted = false LIMIT :limit OFFSET :offset ")
     List<Ticket> findByStatus(Integer offset, Integer limit, String keySearch);
 
+
+    @Query(value = """
+    SELECT COALESCE(MAX(CAST(NULLIF(SPLIT_PART(serial_number, '-', 2), '') AS INTEGER)), 0)
+    FROM tickets
+""", nativeQuery = true)
+    int getMaxSerialSuffix();
+
 }
 

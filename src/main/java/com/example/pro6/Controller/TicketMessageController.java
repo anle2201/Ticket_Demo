@@ -34,13 +34,13 @@ public class TicketMessageController {
     }
 
     @GetMapping("/all")
-    public RespBean<TicketMessageResponse.Detail> getAllTicketMessages( @RequestParam (required = false) String status,
+    public RespBean<TicketMessageResponse.Detail> getAllTicketMessages(@RequestParam (required = false) String status,
                                                                        @RequestParam (required = false) String priority,
                                                                        @RequestParam (required = false) String giveTo,
                                                                        @RequestParam (required = false) String typeAccident,
-                                                                       @RequestParam (required = false)String CCs) {
+                                                                       @RequestParam (required = false) String CCs) {
         try {
-            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getAll(  status, priority, giveTo, typeAccident, CCs));
+            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getAll(status, priority, giveTo, typeAccident, CCs));
         } catch (Exception e) {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }

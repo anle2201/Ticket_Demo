@@ -43,7 +43,6 @@ public class CustomFieldImp implements CustomFieldService {
             field.setIsRequired(updated.getIsRequired());
             field.setOptions(updated.getOptions());
             field.setProjectId(updated.getProjectId());
-
             return fieldRepository.save(field);
 
         }).orElseThrow(() -> new RuntimeException("Custom field not found"));

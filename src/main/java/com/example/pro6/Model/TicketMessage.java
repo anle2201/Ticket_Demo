@@ -165,4 +165,13 @@ public class TicketMessage {
     @Column(nullable = true, name = "type_choice")
     private String loaiLuaChon;
 
+    @Column(nullable = true, name = "detail_cause")
+    private String nguyenNhanChiTiet;
+
+    @Column(nullable = true, name = "is_duplicate_location_assessment")
+    private Boolean isGiamDinhTrungDiaDiem = false;
+
+    @Column(nullable = true, name = "locate_recommend")
+    private String diaDiemDeNghi;
 }
+

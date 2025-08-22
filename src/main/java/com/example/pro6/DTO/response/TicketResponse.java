@@ -39,14 +39,13 @@ public interface TicketResponse {
 
         private String createdByCode;
 
-
         private String assignedToCode;
-
 
         private Timestamp createdAt;
 
         private Timestamp updatedAt;
 
+        private String projectCode;
 
         List<TicketMessageResponse.All> messages;
 
@@ -85,6 +84,7 @@ public interface TicketResponse {
 
         private Timestamp updatedAt;
 
+        private String projectCode;
     }
     @Data
     class Detail {
@@ -101,5 +101,6 @@ public interface TicketResponse {
 
         private String business;
 
+        private String projectCode;
     }
 }

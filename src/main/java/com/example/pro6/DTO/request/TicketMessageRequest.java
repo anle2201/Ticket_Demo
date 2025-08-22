@@ -1,6 +1,7 @@
 package com.example.pro6.DTO.request;
 
 
+import jakarta.persistence.Column;
 import lombok.Data;
 
 public interface TicketMessageRequest {
@@ -56,6 +57,9 @@ public interface TicketMessageRequest {
         private String noiDungCauHoi;
         private String noiDungTraoDoi;
         private String loaiLuaChon;
+        private String diaDiemDeNghi;
+        private String nguyenNhanChiTiet;
+        private Boolean isGiamDinhTrungDiaDiem = false;
     }
 @Data
 class CreatCustomer{
@@ -102,6 +106,9 @@ class CreateAccident{
         private String emailGRSR;
         private String email247;
         private String passMail247;
+        private String nguyenNhanChiTiet;
+        private Boolean isGiamDinhTrungDiaDiem = false;
+        private String diaDiemDeNghi;
     }
 @Data
 class CreateComplaints{

@@ -1,6 +1,7 @@
 package com.example.pro6.DTO.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
 import lombok.Data;
 
 public interface TicketMessageResponse {
@@ -27,7 +28,7 @@ public interface TicketMessageResponse {
     private String hienTruong;
     private String ngayTonThat;
 
-    @JsonFormat(pattern = "HH:mm")
+//    @JsonFormat(pattern = "HH:mm")
     private String gioTonThat;
 
     private String diaDiemTonThat;
@@ -61,7 +62,9 @@ public interface TicketMessageResponse {
     private String noiDungCauHoi;
     private String noiDungTraoDoi;
     private String loaiLuaChon;
-
+    private String nguyenNhanChiTiet;
+    private Boolean isGiamDinhTrungDiaDiem = false;
+    private String diaDiemDeNghi;
 }
     @Data
     class Detail {
@@ -128,8 +131,10 @@ public interface TicketMessageResponse {
         private String email247;
         private String passMail247;
         private String loaiLuaChon;
-
-    }
+        private String nguyenNhanChiTiet;
+        private Boolean isGiamDinhTrungDiaDiem = false;
+        private String diaDiemDeNghi;
+}
     @Data
     class ComplaintsDetail{
         private String tenKH;
