@@ -258,11 +258,11 @@ public class TicketMessageImp implements TicketMessageService {
         return messageRepository.save(existing);
     }
 
-    public TicketMessageResponse.AccidentDetail getAccidentDetail(Long id) {
-        Optional<TicketMessage> optional = messageRepository.findById(id);
+    public TicketMessageResponse.AccidentDetail getAccidentDetail(Long ticketId) {
+        Optional<TicketMessage> optional = messageRepository.findByTicketId(ticketId);
         try {
             if (optional.isEmpty()) {
-                System.out.println("Customer not found with id: " + id);
+                System.out.println("Customer not found with TicketID: " + ticketId);
                 return null;
             }
 
@@ -332,11 +332,11 @@ public class TicketMessageImp implements TicketMessageService {
         }
     }
 
-    public TicketMessageResponse.CustomerDetail getCustomerDetail(Long id) {
-        Optional<TicketMessage> optional = messageRepository.findById(id);
+    public TicketMessageResponse.CustomerDetail getCustomerDetail(Long ticketId) {
+        Optional<TicketMessage> optional = messageRepository.findByTicketId(ticketId);
         try {
             if (optional.isEmpty()) {
-                System.out.println("Customer not found with id: " + id);
+                System.out.println("Customer not found with TicketID: " + ticketId);
                 return null;
             }
             TicketMessage ticketMessage = optional.get();
@@ -378,11 +378,11 @@ public class TicketMessageImp implements TicketMessageService {
         }
     }
 
-    public TicketMessageResponse.ProductDetail getProductDetail(Long id) {
-        Optional<TicketMessage> optional = messageRepository.findById(id);
+    public TicketMessageResponse.ProductDetail getProductDetail(Long ticketId) {
+        Optional<TicketMessage> optional = messageRepository.findByTicketId(ticketId);
         try {
             if (optional.isEmpty()) {
-                System.out.println("Product not found with id: " + id);
+                System.out.println("Product not found with TicketID: " + ticketId);
                 return null;
             }
 
@@ -461,11 +461,11 @@ public class TicketMessageImp implements TicketMessageService {
         }
     }
 
-    public TicketMessageResponse.OtherDetail getOtherDetail(Long id) {
-        Optional<TicketMessage> optional = messageRepository.findById(id);
+    public TicketMessageResponse.OtherDetail getOtherDetail(Long ticketId) {
+        Optional<TicketMessage> optional = messageRepository.findByTicketId(ticketId);
         try {
             if (optional.isEmpty()) {
-                System.out.println("Other message not found with id: " + id);
+                System.out.println("Other message not found with TicketID: " + ticketId);
                 return null;
             }
             TicketMessage ticketMessage = optional.get();
@@ -584,7 +584,6 @@ public class TicketMessageImp implements TicketMessageService {
             System.out.println("Error updating customer message: " + e.getMessage());
             return null;
         }
-
     }
 
     public TicketMessageRequest.CreateAccident updateAccident(TicketMessageRequest.CreateAccident accidentRequest) {

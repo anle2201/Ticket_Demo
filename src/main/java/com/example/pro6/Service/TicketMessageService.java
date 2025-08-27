@@ -37,15 +37,15 @@ public interface TicketMessageService {
 
     Long createOther(TicketMessageRequest.CreateOther otherRequest);
 
-    TicketMessageResponse.CustomerDetail getCustomerDetail(Long id);
+    TicketMessageResponse.CustomerDetail getCustomerDetail(Long ticketId);
 
-    TicketMessageResponse.AccidentDetail getAccidentDetail(Long id);
+    TicketMessageResponse.AccidentDetail getAccidentDetail(Long ticketId);
 
-    TicketMessageResponse.ComplaintsDetail getComplaintsDetail(Long id);
+    TicketMessageResponse.ComplaintsDetail getComplaintsDetail(Long ticketId);
 
-    TicketMessageResponse.ProductDetail getProductDetail(Long id);
+    TicketMessageResponse.ProductDetail getProductDetail(Long ticketId);
 
-    TicketMessageResponse.OtherDetail getOtherDetail(Long id);
+    TicketMessageResponse.OtherDetail getOtherDetail(Long ticketId);
 
     TicketMessageRequest.CreatCustomer updateCustomer(TicketMessageRequest.CreatCustomer customerRequest);
 

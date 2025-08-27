@@ -140,7 +140,7 @@ public class TicketMessageController {
     @PostMapping("/create-other")
     public RespBean<Long> createOther(@RequestBody TicketMessageRequest.CreateOther otherRequest) {
         try {
-            Long newOtherId = ticketMessageService.createOther(otherRequest);
+             Long newOtherId = ticketMessageService.createOther(otherRequest);
             return RespBean.ok(ErrorCode.ERROR_0_STR, newOtherId);
         } catch (Exception e) {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
@@ -148,65 +148,66 @@ public class TicketMessageController {
     }
 
     @GetMapping("/get-customer")
-    public RespBean<TicketMessageResponse.CustomerDetail> getCustomer(@RequestParam Long id) {
+    public RespBean<TicketMessageResponse.CustomerDetail> getCustomer(@RequestParam Long ticketId) {
         try {
-            boolean isExist = ticketMessageService.checkExistTicketMessage(id);
+            boolean isExist = ticketMessageService.checkExistTicketId(ticketId);
             if (!isExist) {
+                System.out.println("Ticket ID does not exist: " + ticketId);
                 return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
             }
-            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getCustomerDetail(id));
+            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getCustomerDetail(ticketId));
         } catch (Exception e) {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
 
     @GetMapping("/get-accident")
-    public RespBean<TicketMessageResponse.AccidentDetail> getAccident(@RequestParam Long id) {
+    public RespBean<TicketMessageResponse.AccidentDetail> getAccident(@RequestParam Long ticketId) {
         try {
-            boolean isExist = ticketMessageService.checkExistTicketMessage(id);
+            boolean isExist = ticketMessageService.checkExistTicketId(ticketId);
             if (!isExist) {
                 return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
             }
-            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getAccidentDetail(id));
+            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getAccidentDetail(ticketId));
         } catch (Exception e) {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
 
     @GetMapping("/get-complaints")
-    public RespBean<TicketMessageResponse.ComplaintsDetail> getComplaints(@RequestParam Long id) {
+    public RespBean<TicketMessageResponse.ComplaintsDetail> getComplaints(@RequestParam Long ticketId) {
         try {
-            boolean isExist = ticketMessageService.checkExistTicketMessage(id);
+            boolean isExist = ticketMessageService.checkExistTicketId(ticketId);
             if (!isExist) {
                 return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
             }
-            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getComplaintsDetail(id));
+            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getComplaintsDetail(ticketId));
         } catch (Exception e) {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
 
     @GetMapping("/get-product")
-    public RespBean<TicketMessageResponse.ProductDetail> getProduct(@RequestParam Long id) {
+    public RespBean<TicketMessageResponse.ProductDetail> getProduct(@RequestParam Long ticketId) {
         try {
-            boolean isExist = ticketMessageService.checkExistTicketMessage(id);
+            boolean isExist = ticketMessageService.checkExistTicketId(ticketId);
             if (!isExist) {
                 return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
             }
-            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getProductDetail(id));
+            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getProductDetail(ticketId));
         } catch (Exception e) {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
     }
 
     @GetMapping("/get-other")
-    public RespBean<TicketMessageResponse.OtherDetail> getOther(@RequestParam Long id) {
+    public RespBean<TicketMessageResponse.OtherDetail> getOther(@RequestParam Long ticketId) {
         try {
-            boolean isExist = ticketMessageService.checkExistTicketMessage(id);
+            boolean isExist = ticketMessageService.checkExistTicketId(ticketId);
             if (!isExist) {
                 return RespBean.error(ErrorCode.ERROR_404, ErrorCode.ERROR_404_STR, -1);
             }
-            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getOtherDetail(id));
+            return RespBean.ok(ErrorCode.ERROR_0_STR, ticketMessageService.getOtherDetail(ticketId));
         } catch (Exception e) {
             return RespBean.error(ErrorCode.ERROR_500, ErrorCode.ERROR_500_STR, -1);
         }
